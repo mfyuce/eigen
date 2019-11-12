@@ -1,0 +1,27 @@
+0.85	0.78	0.84	0.98	0.7	0.85	Travel time
+0.83	0.8	0.83	0.96	0.73	0.84	Traffic Safety
+0.81	0.82	0.82	0.94	0.76	0.83	Chance of Blockage
+0.79	0.84	0.81	0.92	0.79	0.82	Environmental Impact
+0.77	0.86	0.8	0.9	0.82	0.81	Comfort
+0.75	0.88	0.79	0.88	0.85	0.8	Route View
+0.73	0.9	0.78	0.86	0.88	0.79	Route Length
+0.71	0.92	0.77	0.84	0.91	0.78	Route Density
+0.92	0.94	0.87	0.82	0.94	0.77	Traffic Volume
+0.89	0.85	0.86	0.75	0.97	0.85	Weather conditions
+0.86	0.83	0.85	0.77	0.99	0.84	Easy Transfer
+0.83	0.81	0.84	0.79	0.97	0.83	Güzergah Uzunluğu
+0.8	0.79	0.83	0.81	0.95	0.82	Güzergah Yoğunluğu
+0.77	0.77	0.82	0.83	0.93	0.81	Monetary Cost
+0.74	0.75	0.81	0.85	0.91	0.8	Tiredness
+0.75	0.73	0.8	0.87	0.89	0.79	In-Vehicle Density
+0.76	0.71	0.79	0.89	0.87	0.78	Frequency of Use
+0.77	0.69	0.78	0.91	0.85	0.77	Performance Expectancy
+0.78	0.95	0.77	0.93	0.83	0.76	Effort Expectancy
+0.79	0.92	0.71	0.98	0.81	0.85	Social İnfluence
+0.8	0.89	0.73	0.97	0.79	0.84	Faciliting Conditions
+0.81	0.86	0.75	0.96	0.77	0.83	Hedonic Motivation
+0.82	0.83	0.77	0.95	0.75	0.82	Price Value
+0.83	0.8	0.79	0.94	0.85	0.81	Habit
+0.84	0.77	0.81	0.93	0.84	0.8	Security
+0.89	0.74	0.83	0.92	0.83	0.79	Ease Of Use
+0.91	0.71	0.85	0.91	0.82	0.78	Perceived Risk

@@ -1,0 +1,2 @@
+0.85	0.78	Travel time
+0.83	0.8	Traffic Safety

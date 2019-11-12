@@ -1,0 +1,27 @@
+1.0	Travel time
+3.0	Traffic Safety
+6.0	Chance of Blockage
+1.0	Environmental Impact
+1.5	Comfort
+3.0	Route View
+2.5	Route Length
+1.0	Route Density
+1.5	Traffic Volume
+3.5	Weather conditions
+1.5	Easy Transfer
+3.0	Güzergah Uzunluğu
+2.5	Güzergah Yoğunluğu
+1.0	Monetary Cost
+1.5	Tiredness
+3.5	In-Vehicle Density
+1.0	Frequency of Use
+1.5	Performance Expectancy
+1.0	Effort Expectancy
+3.0	Social İnfluence
+2.0	Faciliting Conditions
+4.0	Hedonic Motivation
+1.0	Price Value
+3.0	Habit
+2.0	Security
+1.0	Ease Of Use
+2.0	Perceived Risk

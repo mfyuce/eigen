@@ -1,0 +1,1 @@
+https://en.wikibooks.org/wiki/Linear_Algebra/Eigenvalues_and_eigenvectors
