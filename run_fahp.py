@@ -193,9 +193,10 @@ for criteria in np_criteria_parent_original_with_text:
 
 
 print_new_section()
-print("Solution Matrix \r\n{}".format(weighted_sum_parent_options))
+print("Unordered Solution Matrix \r\n{}".format(weighted_sum_parent_options))
 solution = {}
 for i in range(parent_options_size):
     option_name = original_options_with_text[i][0]
     solution[option_name] = weighted_sum_parent_options[i]
+
 print("Solution Order \r\n{}".format({k: v for k, v in sorted(solution.items(), key=lambda item: -item[1])}))
