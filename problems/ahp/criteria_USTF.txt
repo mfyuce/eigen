@@ -1,0 +1,3 @@
+UM	Ulastirma Maliyeti
+TRS	Transit Sure
+TŞ	Teslim Sekli

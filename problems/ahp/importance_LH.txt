@@ -1,0 +1,7 @@
+Match	BEE	TH
+Match	BEE	YS
+Match	BEE	LK
+Match	TH	YS
+Important	TH	LK
+Important	TH	YS
+Important	YS	LK

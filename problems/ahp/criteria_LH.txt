@@ -1,0 +1,4 @@
+BEE	Bolge Ekonomisine Etkisi
+TH	Ticaret Hacmi
+YS	Yuk Sirkulasyonu
+LK	Logistik Konum

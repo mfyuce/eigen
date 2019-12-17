@@ -1,0 +1,6 @@
+GI	Genisleme Imkanlari
+JY	Jeolojik Yapi
+DFT	Draft
+LV	Liman Verimliligi
+DYB	Demiryolu Baglantisi
+HYB	Havayolu Baglantisi

@@ -1,0 +1,3 @@
+LH	Liman Hinterlandi
+LYO	Liman Yapisal Ozellikleri
+USTF	Ulastirma Sistemi Tercih Faktoru
