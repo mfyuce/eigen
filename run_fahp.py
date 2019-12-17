@@ -89,7 +89,7 @@ def get_weighted_compare_matrix(np_criteria_parent_original_with_text, original_
         importance_index_a = find_criteria_index(importance_name_a, np_criteria_parent_original_with_text)
         importance_index_b = find_criteria_index(importance_name_b, np_criteria_parent_original_with_text)
         importance_parent[importance_index_a][importance_index_b] = importance_value
-        if isinstance(importance_parent[importance_index_b][importance_index_a], int) :
+        if isinstance(importance_parent[importance_index_b][importance_index_a], int):
             importance_parent[importance_index_b][importance_index_a] = symetric_inverse_single_dim(
                 1 / importance_value)
 
@@ -147,83 +147,55 @@ weighted_min_compare_matrix_parent = get_weighted_compare_matrix(np_criteria_par
                                                                  original_importance_parent_with_text)
 
 weighted_min_compare_matrix_sub_problems = {}
+parent_options_size = len(original_options_with_text)
+options_sizes = {"parent": parent_options_size}
+options_importance = {}
+weighted_sum_parent_options = np.zeros(parent_options_size)
 
 # we have just finished doing parent calculations. No going on sub problems
 for criteria in np_criteria_parent_original_with_text:
     criteria_name = criteria[0]
-
+    importance_index_parent_options = find_criteria_index(criteria_name, np_criteria_parent_original_with_text)
+    parent_weight_value  =weighted_min_compare_matrix_parent[importance_index_parent_options]
     np_criteria_sub_arr, np_criteria_sub_original_with_text, original_sub = my_math.read_matrix(
         "{}{}".format(current_problem_path, "criteria_{}.txt".format(criteria_name)))
-
+    sub_options_size = len(np_criteria_sub_original_with_text)
+    options_sizes[criteria_name] = sub_options_size
     print_new_section()
     print("criteria \r\n{}".format(np_criteria_sub_original_with_text))
 
     np_importance_sub_arr, original_importance_sub_with_text, original_importance_sub = my_math.read_matrix(
         "{}{}".format(current_problem_path, "importance_{}.txt".format(criteria_name)))
 
-    weighted_min_compare_matrix_sub_problems[criteria_name] = get_weighted_compare_matrix(np_criteria_sub_original_with_text,
-                                                                                     original_importance_sub_with_text)
+    weighted_min_compare_matrix_sub_problems[criteria_name] = get_weighted_compare_matrix(
+        np_criteria_sub_original_with_text,
+        original_importance_sub_with_text)
 
-importance_array = my_math.generate_importance_correlation_matrix(original_importance)
+    np_option_importance_sub_arr, original_option_importance_sub_with_text, original_option_importance_sub = my_math.read_matrix(
+        "{}{}".format(current_problem_path, "options_importance_{}.txt".format(criteria_name)))
+    options_size_tupple = (sub_options_size, parent_options_size)
+    options_importance[criteria_name] = np.zeros(options_size_tupple)
+    for option_importance in original_option_importance_sub_with_text:
+        importance_value = my_math.covert_to_float(option_importance[0])
+        sub_option_name = option_importance[1]
+        parent_option_name = option_importance[2]
+        importance_index_parent_options = find_criteria_index(parent_option_name, original_options_with_text)
+        importance_index_sub_options = find_criteria_index(sub_option_name, np_criteria_sub_original_with_text)
+        options_importance[criteria_name][importance_index_sub_options][importance_index_parent_options] = importance_value
 
-np_criteria_arr = {}
-np_criteria_original_with_text = {}
-original = {}
+    weighted_parent_options = np.zeros(options_size_tupple)
+    for i in range(sub_options_size):
+        sub_waighted_value = weighted_min_compare_matrix_sub_problems[criteria_name][i]
+        for j in range(parent_options_size):
+            weighted_parent_options[i][j] = parent_weight_value * options_importance[criteria_name][i][j] * sub_waighted_value
 
-for parent in np_criteria_original_with_text:
-    np_criteria_arr[parent], np_criteria_original_with_text[parent], original[parent] = my_math.read_matrix(
-        "{}{}".format(current_problem_path, "importance_{}.txt".format(parent)))
+    weighted_sum_parent_options = np.add(weighted_sum_parent_options, np.sum(weighted_parent_options, axis=0))
 
-np_importance_arr, original_with_text, original_importance = my_math.read_matrix(
-    "{}{}".format(current_problem_path, "importance.txt"))
-
-print("importance \r\n{}".format(np_importance_arr))
-
-importance_array = my_math.generate_importance_correlation_matrix(original_importance)
-
-print_new_section()
-print("importance correlation \r\n{}".format(importance_array))
-
-eigens = np.linalg.eig(importance_array)
-print("eigens values \r\n{}".format(eigens[0].real))
-print("eigens vectors \r\n{}".format(eigens[1].real))
-
-eigens_values = eigens[0]
-max_eigen_value_index = eigens_values.argmax()
-print_new_section()
-print("max eigen value {}".format(eigens_values.max()))
-print("max eigen value index \r\n{}".format(max_eigen_value_index))
-
-eigens_vectors = eigens[1]
-selected_eigen_vector = eigens_vectors[max_eigen_value_index]
-print_new_section()
-print("Selected eigen vector \r\n{}".format(selected_eigen_vector))
-
-for ei in range(selected_eigen_vector.size):
-    eigen_row_value = selected_eigen_vector[ei]
-    for ai in range(np_criteria_arr[ei].size):
-        np_criteria_arr[ei][ai] = np_criteria_arr[ei][ai] ** ei
 
 print_new_section()
-print("options ^ eigen vector \r\n{}".format(np_criteria_arr))
-arr_result = []
-for hi in range(size_x):  # horizontal
-    min_value = 1
-    for vi in range(size_y):
-        value = np_criteria_arr[hi][vi]
-        if value < min_value:
-            min_value = value
-    arr_result.append(min_value)
-
-print_new_section()
-print("min options \r\n{}".format(arr_result))
-
-max_value = 0
-max_value_index = 0
-for i in range(size_y):
-    value = arr_result[i]
-    if value > max_value:
-        max_value = value
-
-print_new_section()
-print("Solution \r\n{} with {}".format(original_options_with_text[max_value_index], max_value))
+print("Solution Matrix \r\n{}".format(weighted_sum_parent_options))
+solution = {}
+for i in range(parent_options_size):
+    option_name = original_options_with_text[i][0]
+    solution[option_name] = weighted_sum_parent_options[i]
+print("Solution Order \r\n{}".format({k: v for k, v in sorted(solution.items(), key=lambda item: -item[1])}))
